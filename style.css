@@ -191,6 +191,7 @@ select {
         top: -374px;
     }
 }
+
 @keyframes typing {
 
     40%,
@@ -235,7 +236,11 @@ select {
     line-height: 25px;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
+    background-color: transparent;
+}
+
+.header-logo {
+    background-color: transparent
 }
 
 .header-logo:hover {
@@ -321,7 +326,7 @@ select {
 }
 
 .introduction-text-dynamic li {
-    color: #ff4c29;
+    color: #ff7f29;
     font-size: 100px;
     font-weight: 500;
     top: 0;
@@ -440,7 +445,8 @@ select {
 
 @media (max-width: 460px) {
     .quote {
-        font-size: px;
+        font-size: 28px;
+        line-height: 4rem;
         font-weight: 400;
     }
 }
@@ -455,6 +461,7 @@ select {
 
 .experience {
     width: 100%;
+    margin-bottom: 25rem;
 }
 
 .experience::after {
@@ -471,8 +478,12 @@ select {
 }
 
 .experience-title {
-    color: #fff;
-    font-size: 18px;
+    width: fit-content;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    text-shadow: 0 0 0 #fff;
+    transition: all 250ms;
+    font-size: 38px;
     font-weight: 200;
     font-style: italic;
     text-align: start;
@@ -480,6 +491,11 @@ select {
     animation: appear linear;
     animation-timeline: view();
     animation-range: entry 0 cover 50%;
+}
+
+.experience-title:hover {
+    text-shadow: 4px 4px 0 #ff7f29;
+    transform: translate(-2px, -2px)
 }
 
 .experience-container {
@@ -497,7 +513,7 @@ select {
     cursor: default;
 }
 
-.experience-subtext {
+.experience-highlight-text {
     animation: highlight linear forwards;
     animation-timeline: view(60% 20%);
     background: linear-gradient(to right,
@@ -521,13 +537,18 @@ select {
 .experience-tab-text {
     font-size: 86px;
     font-family: "Permanent Marker", serif;
-    text-shadow: -44px 7px 17px #4e4e4e;
+    text-shadow: -22px 16px 17px #4e4e4e;
     transition: .6s ease;
     cursor: default;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    transition: all 250ms;
 }
 
 .experience-tab-text:hover {
     scale: 1.05;
+    text-shadow: 4px 4px 0 #ff7f29;
+    transform: translate(-2px, -2px)
 }
 
 .experience-tab-subtext {
@@ -539,6 +560,7 @@ select {
 @media (max-width: 1024px) {
     .experience-title {
         font-size: 48px;
+        width: 100%;
     }
 
     .experience-text {
@@ -571,7 +593,7 @@ select {
     }
 
     .experience-text {
-        font-size: 16px;
+        font-size: 19px;
         text-align: center;
         margin-bottom: 55px;
     }
@@ -597,3 +619,100 @@ select {
 /*
     -------------------------------------------------------------------------КІНЕЦЬ EXPERIENCE----------------------------------------------------------------------------!
 */
+
+.projects {}
+
+.projects-title {
+    width: fit-content;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    text-shadow: 0 0 0 #fff;
+    transition: all 250ms;
+    font-size: 38px;
+    font-weight: 200;
+    font-style: italic;
+    text-align: start;
+    margin-bottom: 7rem;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 50%;
+}
+
+.projects-title:hover {
+    text-shadow: 4px 4px 0 #ff7f29;
+    transform: translate(-2px, -2px)
+}
+
+.projects-text {
+    margin-bottom: 8rem;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 200;
+    font-style: italic;
+    cursor: default;
+}
+
+.experience-highlight-text {
+    animation: highlight linear forwards;
+    animation-timeline: view(60% 20%);
+    background: linear-gradient(to right,
+            oklch(0.7 0.23 67 / 1) 50%,
+            oklch(0.86 0.19 84.89 / 0) 50%);
+    background-position: 100%;
+    background-size: 200% 100%;
+    border-radius: 0.125rem;
+    padding-inline: 0.125rem;
+}
+
+.projects-list {
+    position: relative;
+}
+
+.projects-item {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .projects-title {
+        margin-bottom: 1rem;
+    }
+
+    .projects-text {
+        margin-bottom: 5.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-title {
+        width: 100%;
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .projects-text {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .projects-text {
+        font-size: 20px;
+        margin-bottom: -4rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 460px) {
+    .projects-text {
+        font-size: 20px;
+        margin-bottom: -10rem;
+        text-align: center;
+    }
+}
