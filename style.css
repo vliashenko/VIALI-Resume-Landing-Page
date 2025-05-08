@@ -1,0 +1,599 @@
+/* 
+    ГЛОБАЛЬНИЙ ІМПОРТ СТИЛЮ ТЕКСТУ З GOOGLE FONTS
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+/*
+    -------------------------------------------------------------------СКИДАННЯ СТИЛІВ CSS--------------------------------------------------------------------------!
+*/
+
+/* 
+    Починаємо ми з box-sizing. Тут я простим та елегантним рухом відразу ж
+    скидаю всі елементи та псевдоелементи на box-sizing: border-box. Хтось
+    вважає, що псевдоелементи повинні успадковувати параметри блокової моделі,
+    але я вважаю це непотрібно. Якщо ви хочете використовувати інше значення 
+    для box-sizing, то просто вкажіть його — це те, як я роблю, в будь-якому випадку. 
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+    Після box-sizing, я скидаю margin і padding, навіть там, де вони виставлені
+    дефолтними налаштуваннями браузерів. Тут і так все зрозуміло. Але хоча, я 
+    згадаю ситуацію зі списками. Тут я вибрав тільки ті списки, у яких є атрибут
+    class, тому що якщо я буду використовувати чистий <ul> або <ol>, то я хочу,
+    щоб він виглядав реально як список.
+*/
+ul[class],
+ol[class] {
+    padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/*
+    Дуже корисно вказати для body зайняти весь viewport, навіть коли він порожній,
+    роблю я це, виставляючи min-height на 100vh. Ще мені подобається плавний скролл
+    до "якорю", так що тут я виставлю scroll-behavior: smooth. Ще, я виставив лише два
+    текстові стилі. line-height на 1.5, тому що по-дефолту коштує 1.2, чого відверто
+    недостатньо щодо доступності і читабельності тексту. Також я виставив text-rendering
+    на optimizeSpeed. Використовуючи optimizeLegibility, ви робите ваш текст приємнішим
+    на вигляд, але можете зіткнутися з серйозними проблемами продуктивності, такими як
+    затримки в 30 секунд при завантаженні, так що я його намагаюся уникати.
+*/
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-family: 'poppins', sans-serif;
+    background-color: black;
+}
+
+/*
+    Як і з відступами, я скидаю стилізацію списків лише у елементів, які мають вказаний class.
+*/
+ul[class],
+ol[class] {
+    list-style: none;
+}
+
+/* 
+    Для посилань без вказівки класу, я виставлю text-decoration-skip-ink: auto, так що підкреслення
+    буде рендер куди читабельніше.
+*/
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/*
+    Далі йдуть старі добрі гумові зображення. Я вирішив зробити все зображення блоковими елементами,
+    тому що, відверто кажучи, життя надто коротке, щоб миритися з цим дрібним, стрімким відступом
+    знизу і взагалі, насправді, зображення — особливо ті, з якими я працюю — зазвичай мають на увазі
+    блочну поведінку.
+*/
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/*
+    Так званий “lobotomized owl selector” вибирає прямих нащадків article і додає їм зверху зовнішній
+    відступ у 1em. Це показує зрозумілу періодичність у потоці контенту у article.
+*/
+article>*+* {
+    margin-top: 1em;
+}
+
+/*
+    Ще одна річ, яку я нарешті наважився виставити по дефолту це font: inherit для інпутів, які,
+    простіше кажучи, роблять те, що й повинні робити. Досить вже цього дрібного (mono, інколи) тексту!
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*
+    Останнє, але вже точно не менш важливе, це один @media запит, який скидає анімації, переходи
+    і поведінкові налаштування для скролла, але тільки в тих випадках, коли користувач віддає
+    перевагу якомога менше будь-яких рухів на сторінці. зайвих переходів і т.п., він і не повинен
+    їх бачити, незалежно від CSS при скиданні стилів.
+*/
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/*
+    ------------------------------------------------------------------КІНЕЦЬ СКИДАННЯ СТИЛІВ CSS---------------------------------------------------------------------------!
+*/
+
+/* АНІМАЦІЇ */
+
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes moveup-and-fade {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveleft-and-fade {
+    0% {
+        transform: translatex(-70px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes highlight {
+    to {
+        background-position: 0;
+    }
+}
+
+@keyframes slide {
+    100% {
+        top: -374px;
+    }
+}
+@keyframes typing {
+
+    40%,
+    60% {
+        left: calc(100% + 10px);
+    }
+
+    100% {
+        left: 0
+    }
+}
+
+/*
+    ----------------------------------------------------------------------------MAIN---------------------------------------------------------------------------------------!
+*/
+
+.main {
+    max-width: 100ch;
+    padding: 3em 1em;
+    line-height: 1.75;
+    margin: auto;
+}
+
+/*
+    -------------------------------------------------------------------------КІНЕЦЬ MAIN-----------------------------------------------------------------------------------!
+*/
+
+/*
+    ----------------------------------------------------------------------------HEADER-------------------------------------------------------------------------------------!
+*/
+.header {
+    height: 76px;
+    display: flex;
+    background-color: black;
+}
+
+.header-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    line-height: 25px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+.header-logo:hover {
+    scale: 1.07;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.header-logo-img {
+    width: 130px;
+}
+
+.header-nav {
+    display: block;
+    width: 100%;
+    margin-right: 20px;
+}
+
+.header-nav-link {
+    float: right;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 200;
+    text-decoration: inherit;
+    padding-left: 45px;
+}
+
+.header-nav-link:hover {
+    scale: 1.07;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+@media (max-width: 640px) {
+    .header-nav {
+        display: none;
+    }
+}
+
+/*
+    -------------------------------------------------------------------------КІНЕЦЬ HEADER---------------------------------------------------------------------------------!
+*/
+
+/*
+    ----------------------------------------------------------------------------INTRODUCTION-------------------------------------------------------------------------------!
+*/
+
+.introduction {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 308px);
+    margin-bottom: 33rem;
+}
+
+.introduction-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.introduction-text {
+    display: flex;
+    flex-direction: column;
+    animation: fade-out linear;
+    animation-timeline: view();
+    animation-range: exit -200px;
+}
+
+.introduction-text .introduction-text-static {
+    color: #fff;
+    font-size: 80px;
+    font-weight: 400;
+    animation: moveup-and-fade 3s ease-out;
+}
+
+.introduction-text .introduction-text-dynamic {
+    line-height: 90px;
+    height: 90px;
+    overflow: hidden;
+    animation: moveleft-and-fade 2s ease-in;
+}
+
+.introduction-text-dynamic li {
+    color: #ff4c29;
+    font-size: 100px;
+    font-weight: 500;
+    top: 0;
+    position: relative;
+    animation: slide 12s steps(4) infinite;
+}
+
+.introduction-text-dynamic li::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    animation: typing 3s steps(10) infinite;
+}
+
+@media (max-width: 640px) {
+    .introduction-text {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .introduction-text .introduction-text-static {
+        font-size: 50px;
+        font-weight: 400;
+    }
+
+    .introduction-text-dynamic {
+        text-align: center;
+    }
+
+    .introduction-text-dynamic li {
+        font-size: 80px;
+    }
+}
+
+@media (max-width: 460px) {
+    .introduction-text {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .introduction-text .introduction-text-static {
+        font-size: 40px;
+        font-weight: 400;
+    }
+
+    .introduction-text-dynamic {
+        text-align: center;
+    }
+
+    .introduction-text-dynamic li {
+        font-size: 40px;
+    }
+}
+
+/*
+    -------------------------------------------------------------------------КІНЕЦЬ INTRODUCTION---------------------------------------------------------------------------!
+*/
+
+/*
+    -------------------------------------------------------------------------QUOTE-----------------------------------------------------------------------------------------!
+*/
+
+.quote {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 200;
+    width: 100%;
+    text-align: center;
+    line-height: 4rem;
+    margin-bottom: 35rem;
+}
+
+.quote-container {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+}
+
+.quote::after {
+    content: '';
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 100%;
+    position: absolute;
+    bottom: -100%;
+    z-index: -1;
+    width: 100%;
+    left: 0;
+    background-color: #0f0f10;
+    height: 85%;
+}
+
+.quote-mark {
+    font-size: 70px;
+    line-height: 4rem;
+}
+
+.blockquote {
+    animation: fade-out linear;
+    animation-timeline: view();
+    animation-range: exit -400px;
+}
+
+@media (max-width: 640px) {
+    .quote {
+        font-size: 25px;
+        font-weight: 300;
+    }
+
+    .quote-mark {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 460px) {
+    .quote {
+        font-size: px;
+        font-weight: 400;
+    }
+}
+
+/*
+    -------------------------------------------------------------------------КІНЕЦЬ QUOTE---------------------------------------------------------------------------------!
+*/
+
+/*
+    -------------------------------------------------------------------------EXPERIENCE-----------------------------------------------------------------------------------!
+*/
+
+.experience {
+    width: 100%;
+}
+
+.experience::after {
+    content: '';
+    border-bottom-left-radius: 100% 50%;
+    border-bottom-right-radius: 100% 50%;
+    position: absolute;
+    bottom: -180%;
+    z-index: -1;
+    width: 100%;
+    left: 0;
+    background-color: #0f0f10;
+    height: 85%;
+}
+
+.experience-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 200;
+    font-style: italic;
+    text-align: start;
+    margin-bottom: 7rem;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 50%;
+}
+
+.experience-container {
+    display: flex;
+    flex-direction: row;
+    gap: 65px;
+}
+
+.experience-text {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 200;
+    max-width: 390px;
+    font-style: italic;
+    cursor: default;
+}
+
+.experience-subtext {
+    animation: highlight linear forwards;
+    animation-timeline: view(60% 20%);
+    background: linear-gradient(to right,
+            oklch(0.7 0.23 67 / 1) 50%,
+            oklch(0.86 0.19 84.89 / 0) 50%);
+    background-position: 100%;
+    background-size: 200% 100%;
+    border-radius: 0.125rem;
+    padding-inline: 0.125rem;
+}
+
+.experience-tablist {
+    position: relative;
+    top: -60px;
+    color: #fff;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 30%;
+}
+
+.experience-tab-text {
+    font-size: 86px;
+    font-family: "Permanent Marker", serif;
+    text-shadow: -44px 7px 17px #4e4e4e;
+    transition: .6s ease;
+    cursor: default;
+}
+
+.experience-tab-text:hover {
+    scale: 1.05;
+}
+
+.experience-tab-subtext {
+    font-size: 34px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+@media (max-width: 1024px) {
+    .experience-title {
+        font-size: 48px;
+    }
+
+    .experience-text {
+        font-size: 18px;
+    }
+
+    .experience-tab-text {
+        font-size: 56px;
+    }
+
+    .experience-tab-subtext {
+        font-size: 24px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .experience-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 65px;
+    }
+
+    .experience-title {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .experience-text {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 55px;
+    }
+
+    .experience-tab-text {
+        font-size: 400%;
+        text-align: center;
+    }
+
+    .experience-tab-subtext {
+        font-size: 18px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 460px) {
+    .experience-tab-text {
+        font-size: 200%;
+        text-align: center;
+    }
+}
+
+/*
+    -------------------------------------------------------------------------КІНЕЦЬ EXPERIENCE----------------------------------------------------------------------------!
+*/
