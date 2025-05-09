@@ -134,7 +134,9 @@ select {
     ------------------------------------------------------------------КІНЕЦЬ СКИДАННЯ СТИЛІВ CSS---------------------------------------------------------------------------!
 */
 
-/* АНІМАЦІЇ */
+/*
+    ----------------------------------------------------------------------------KEYFRAMES----------------------------------------------------------------------------------!
+*/
 
 
 @keyframes fade-out {
@@ -204,6 +206,25 @@ select {
     }
 }
 
+@keyframes loop {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/*
+    ------------------------------------------------------------------------КІНЕЦЬ KEYFRAMES-------------------------------------------------------------------------------!
+*/
+
+
 /*
     ----------------------------------------------------------------------------MAIN---------------------------------------------------------------------------------------!
 */
@@ -213,6 +234,39 @@ select {
     padding: 3em 1em;
     line-height: 1.75;
     margin: auto;
+}
+
+.title {
+    width: fit-content;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    text-shadow: 0 0 0 #fff;
+    transition: all 250ms;
+    font-size: 38px;
+    font-weight: 200;
+    font-style: italic;
+    text-align: start;
+    margin-bottom: 7rem;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 50%;
+}
+
+.title:hover {
+    text-shadow: 4px 4px 0 #ff7f29;
+    transform: translate(-2px, -2px);
+}
+
+.highlight {
+    animation: highlight linear forwards;
+    animation-timeline: view(60% 20%);
+    background: linear-gradient(to right,
+            oklch(0.7 0.23 67 / 1) 50%,
+            oklch(0.86 0.19 84.89 / 0) 50%);
+    background-position: 100%;
+    background-size: 200% 100%;
+    border-radius: 0.125rem;
+    padding-inline: 0.125rem;
 }
 
 /*
@@ -477,27 +531,6 @@ select {
     height: 85%;
 }
 
-.experience-title {
-    width: fit-content;
-    color: transparent;
-    -webkit-text-stroke: 1.5px #fff;
-    text-shadow: 0 0 0 #fff;
-    transition: all 250ms;
-    font-size: 38px;
-    font-weight: 200;
-    font-style: italic;
-    text-align: start;
-    margin-bottom: 7rem;
-    animation: appear linear;
-    animation-timeline: view();
-    animation-range: entry 0 cover 50%;
-}
-
-.experience-title:hover {
-    text-shadow: 4px 4px 0 #ff7f29;
-    transform: translate(-2px, -2px)
-}
-
 .experience-container {
     display: flex;
     flex-direction: row;
@@ -511,18 +544,6 @@ select {
     max-width: 390px;
     font-style: italic;
     cursor: default;
-}
-
-.experience-highlight-text {
-    animation: highlight linear forwards;
-    animation-timeline: view(60% 20%);
-    background: linear-gradient(to right,
-            oklch(0.7 0.23 67 / 1) 50%,
-            oklch(0.86 0.19 84.89 / 0) 50%);
-    background-position: 100%;
-    background-size: 200% 100%;
-    border-radius: 0.125rem;
-    padding-inline: 0.125rem;
 }
 
 .experience-tablist {
@@ -548,7 +569,7 @@ select {
 .experience-tab-text:hover {
     scale: 1.05;
     text-shadow: 4px 4px 0 #ff7f29;
-    transform: translate(-2px, -2px)
+    transform: translate(-2px, -2px);
 }
 
 .experience-tab-subtext {
@@ -561,6 +582,7 @@ select {
     .experience-title {
         font-size: 48px;
         width: 100%;
+        margin-bottom: 4rem;
     }
 
     .experience-text {
@@ -620,27 +642,12 @@ select {
     -------------------------------------------------------------------------КІНЕЦЬ EXPERIENCE----------------------------------------------------------------------------!
 */
 
-.projects {}
+/*
+    -------------------------------------------------------------------------PROJECTS-------------------------------------------------------------------------------------!
+*/
 
-.projects-title {
-    width: fit-content;
-    color: transparent;
-    -webkit-text-stroke: 1.5px #fff;
-    text-shadow: 0 0 0 #fff;
-    transition: all 250ms;
-    font-size: 38px;
-    font-weight: 200;
-    font-style: italic;
-    text-align: start;
-    margin-bottom: 7rem;
-    animation: appear linear;
-    animation-timeline: view();
-    animation-range: entry 0 cover 50%;
-}
-
-.projects-title:hover {
-    text-shadow: 4px 4px 0 #ff7f29;
-    transform: translate(-2px, -2px)
+.projects {
+    margin-bottom: 15rem;
 }
 
 .projects-text {
@@ -652,25 +659,13 @@ select {
     cursor: default;
 }
 
-.experience-highlight-text {
-    animation: highlight linear forwards;
-    animation-timeline: view(60% 20%);
-    background: linear-gradient(to right,
-            oklch(0.7 0.23 67 / 1) 50%,
-            oklch(0.86 0.19 84.89 / 0) 50%);
-    background-position: 100%;
-    background-size: 200% 100%;
-    border-radius: 0.125rem;
-    padding-inline: 0.125rem;
-}
-
 .projects-list {
     position: relative;
 }
 
 .projects-item {
     position: sticky;
-    top: 0;
+    top: 16%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -680,11 +675,15 @@ select {
 
 @media (max-width: 1024px) {
     .projects-title {
-        margin-bottom: 1rem;
+        margin-bottom: 4rem;
     }
 
     .projects-text {
         margin-bottom: 5.5rem;
+    }
+
+    .projects-item {
+        top: 14%;
     }
 }
 
@@ -694,6 +693,10 @@ select {
         font-size: 28px;
         text-align: center;
         margin-bottom: 2rem;
+    }
+
+    .projects-item {
+        top: 2%;
     }
 
     .projects-text {
@@ -707,12 +710,209 @@ select {
         margin-bottom: -4rem;
         text-align: center;
     }
+
+    .projects-item {
+        top: 2%;
+    }
 }
 
 @media (max-width: 460px) {
+    .projects {
+        position: relative;
+    }
+
     .projects-text {
         font-size: 20px;
         margin-bottom: -10rem;
         text-align: center;
     }
+
+    .projects-list {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        height: 100vh;
+        top: 120%;
+    }
+
+    .projects-item {
+        position: initial;
+        animation: moveleft-and-fade 2s ease-in;
+        animation-timeline: view();
+        animation-range: entry 0 cover 40%;
+    }
+
 }
+
+/*
+    -------------------------------------------------------------------------КІНЕЦЬ PROJECTS------------------------------------------------------------------------------!
+*/
+
+/*
+    ----------------------------------------------------------------------------TECHSTACK---------------------------------------------------------------------------------!
+*/
+
+.techstack {
+    margin-bottom: 15rem;
+}
+
+.techstack-text {
+    margin-bottom: 3rem;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 200;
+    font-style: italic;
+    cursor: default;
+    animation: moveup-and-fade 3s ease-in-out;
+    animation-timeline: view();
+    animation-range: entry 0 cover 50%;
+}
+
+.techstack-list {
+    width: 100%;
+    max-width: 90vw;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    position: relative;
+    padding: 1.5rem 0;
+    overflow: hidden;
+    animation: moveup-and-fade 2s ease-in;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+}
+
+.techstack-slider-wrapper {
+    display: flex;
+    width: fit-content;
+    padding-bottom: 1rem;
+    animation-name: loop;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: var(--direction);
+    animation-duration: var(--duration);
+}
+
+.techstack-slider-item {
+    display: flex;
+    min-width: max-content;
+    align-items: center;
+    gap: 0 0.2rem;
+    color: #000000;
+    font-size: 0.9rem;
+    background-color: #ffffff;
+    border-radius: 0.4rem;
+    padding: 0.7rem 1rem;
+    margin-right: 1rem;
+    box-shadow:
+        0 0.1rem 0.2rem rgb(0 0 0 / 20%),
+        0 0.1rem 0.5rem rgb(0 0 0 / 30%),
+        0 0.2rem 1.5rem rgb(0 0 0 / 40%);
+}
+
+.techstack-slider-item span {
+    font-size: 1.2rem;
+    color: #ff7f29;
+}
+
+.techstack-fade {
+    pointer-events: none;
+    background: linear-gradient(90deg, #000000, transparent 30%, transparent 70%, #000000);
+    position: absolute;
+    inset: 0;
+}
+
+@media (max-width: 1024px) {
+    .techstack-title {
+        margin-bottom: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .techstack-title {
+        width: 100%;
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .techstack-text {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 460px) {
+    .techstack {
+        margin-top: 175rem;
+    }
+}
+
+/*
+    ----------------------------------------------------------------------------КІНЕЦЬ TECHSTACK--------------------------------------------------------------------------!
+*/
+
+/*
+    ---------------------------------------------------------------------------------ABOUT--------------------------------------------------------------------------------!
+*/
+
+.about-container {
+    display: flex;
+}
+
+.about-subtitle {
+    width: fit-content;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #fff;
+    text-shadow: 0 0 0 #fff;
+    transition: all 250ms;
+    font-size: 38px;
+    font-weight: 200;
+    font-style: italic;
+    text-align: start;
+    margin-bottom: 4rem;
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 50%;
+}
+
+.about-text {
+    margin-bottom: 3rem;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 200;
+    font-style: italic;
+    cursor: default;
+    animation: moveup-and-fade 3s ease-in-out;
+    animation-timeline: view();
+    animation-range: entry 0 cover 10%;
+}
+
+@media (max-width: 768px) {
+    .about-title {
+        width: 100%;
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .about-subtitle {
+        margin-bottom: 2rem;
+        font-size: 27px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 640px) {
+    .about-text {
+        font-size: 20px;
+        text-align: center;
+    }
+}
+
+/*
+    -----------------------------------------------------------------------------КІНЕЦЬ ABOUT-----------------------------------------------------------------------------!
+*/
